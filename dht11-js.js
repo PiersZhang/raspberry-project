@@ -15,18 +15,10 @@
 // // 如果想停止刷新，可以使用 dispose() 停止.
 // // subscription.dispose()
 
-var DHTSeries = require('rx-dht-sensor');
-
-// 创建驱动实例
-var dht11 = new DHTSeries({
-  model: 'dht11',
-  address: 4
-});
-
-// 简单的使用 fetch 方法读取传感器的值，如读取失败，err 参数不为 null
-dht11.fetch(function (err, temperature, humidity) {
-  if (err) {
-    return console.error('a error occur when read dht-sensor:', err);
+var sensor = require("node-dht-sensor");
+ 
+sensor.read(11, 4, function(err, temperature, humidity) {
+  if (!err) {
+    console.log(`temp: ${temperature}°C, humidity: ${humidity}%`);
   }
-  console.log('temperature: ' + temperature.toFixed(1) + ', humidity: ' + humidity.toFixed(1));
 });
