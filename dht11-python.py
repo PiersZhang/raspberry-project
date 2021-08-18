@@ -1,26 +1,69 @@
-import Adafruit_DHT
+import RPi.GPIO as GPIO
 import time
 
-# git clone https://github.com/laomingofficial/Adafruit_Python_DHT
-# sudo mkdir -p /usr/local/lib/python3.7/dist-packages/
-# sudo python3 setup.py install
+channel =2 # 上文提到的GPIO编号 
+data = []
+j = 0
 
-DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 7
+GPIO.setmode(GPIO.BCM)
+time.sleep(1)
+GPIO.setup(channel, GPIO.OUT)
+GPIO.output(channel, GPIO.LOW)
+time.sleep(0.02)
+GPIO.output(channel, GPIO.HIGH)
+GPIO.setup(channel, GPIO.IN)
+while GPIO.input(channel) == GPIO.LOW:
+    continue
+while GPIO.input(channel) == GPIO.HIGH:
+    continue
 
+while j < 40:
+    k = 0
+    while GPIO.input(channel) == GPIO.LOW:
+        continue
+    while GPIO.input(channel) == GPIO.HIGH:
+        k += 1
+    if k > 100:
+        break
+    if k < 8:
+        data.append(0)
+    else:
+        data.append(1)
+    j += 1
 
-def start():
-    while True:
-        humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
-        if humidity is not None and temperature is not None:
-            print("溫度={0:0.1f}C 濕度={1:0.1f}%".format(temperature, humidity))
-        else:
-            print("傳感器讀取失敗.")
-        time.sleep(3)
+print ("sensor is working.")
 
+humidity_bit = data[0:8]
+humidity_point_bit = data[8:16]
+temperature_bit = data[16:24]
+temperature_point_bit = data[24:32]
+check_bit = data[32:40]
 
-if __name__ == "__main__":
-    try:
-        start()
-    except KeyboardInterrupt:
-        exit()
+humidity = 0
+humidity_point = 0
+temperature = 0
+temperature_point = 0
+check = 0
+
+for i in range(8):
+    humidity += humidity_bit[i] * 2 ** (7-i)
+    humidity_point += humidity_point_bit[i] * 2 ** (7-i)
+    temperature += temperature_bit[i] * 2 ** (7-i)
+    temperature_point += temperature_point_bit[i] * 2 ** (7-i)
+    check += check_bit[i] * 2 ** (7-i)
+
+tmp = humidity + humidity_point + temperature + temperature_point
+
+if check == tmp:
+    print ("temperature :", temperature, "*C, humidity :", humidity, "%")
+    res='{value:%f}'% temperature
+    import json
+    with open('/home/pi/Desktop/data.txt', 'a') as outfile:
+        json.dump(res, outfile)
+    outest=open('/home/pi/Desktop/data.txt','a')
+    outest.write(res)
+    outest.close
+    print(res)
+else:
+    print ("wrong")
+GPIO.cleanup()
