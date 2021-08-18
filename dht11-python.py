@@ -6,7 +6,7 @@ import time
 # sudo python3 setup.py install
 
 DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 17
+DHT_PIN = 7
 
 
 def start():
