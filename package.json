@@ -1,0 +1,22 @@
+{
+  "name": "raspberry-project",
+  "version": "1.0.0",
+  "description": "this is a project of raspberry",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PiersZhang/raspberry-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PiersZhang/raspberry-project/issues"
+  },
+  "homepage": "https://github.com/PiersZhang/raspberry-project#readme",
+  "dependencies": {
+    "rx-dht-sensor": "0.0.1"
+  }
+}
