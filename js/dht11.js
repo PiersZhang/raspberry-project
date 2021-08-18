@@ -17,7 +17,7 @@
 
 var sensor = require("node-dht-sensor");
  
-sensor.read(11, 4, function(err, temperature, humidity) {
+sensor.read(11, 4, function(err, temperature, humidity) { // 11代表传感器型号，4代表GPIO4
   if (!err) {
     console.log(`temp: ${temperature}°C, humidity: ${humidity}%`);
   }
