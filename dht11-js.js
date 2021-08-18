@@ -15,7 +15,6 @@
 // // 如果想停止刷新，可以使用 dispose() 停止.
 // // subscription.dispose()
 
-
 var DHTSeries = require('rx-dht-sensor');
 
 // 创建驱动实例
