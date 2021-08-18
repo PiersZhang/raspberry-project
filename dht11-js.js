@@ -20,7 +20,7 @@ var DHTSeries = require('rx-dht-sensor');
 // 创建驱动实例
 var dht11 = new DHTSeries({
   model: 'dht11',
-  address: 11
+  address: 17
 });
 
 // 简单的使用 fetch 方法读取传感器的值，如读取失败，err 参数不为 null
