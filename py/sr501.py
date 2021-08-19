@@ -3,6 +3,8 @@ import time
 
 
 def init():
+    print
+    GPIO
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(12, GPIO.IN)
