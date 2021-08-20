@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 import time
+import requests
+import json
 
 def delayMicrosecond(t):    # 微秒级延时函数
     start,end=0,0           # 声明变量
@@ -8,10 +10,10 @@ def delayMicrosecond(t):    # 微秒级延时函数
     while end-start<t:  # 循环至时间差值大于或等于设定值时
         end=time.time()     # 记录结束时间
 
-tmp=[]      # 用来存放读取到的数据
-
+root = "http://172.20.10.3:3000"
+tmp = []      # 用来存放读取到的数据
 data = 4   # DHT11的data引脚连接到的树莓派的GPIO引脚，使用BCM编号
-a,b=0,0
+a,b = 0,0
 
 def DHT11():
     GPIO.setup(data, GPIO.OUT)  # 设置GPIO口为输出模式
@@ -90,6 +92,8 @@ while True:
   
     if check==check_tmp and temperature!=0 and temperature!=0:  # 判断数据是否正常
         print("Temperature is ", temperature,"C\nHumidity is ",humidity,"%")# 打印温湿度数据
+        url = root + '/0'
+        res = requests.post(url = url + '/' + temperature + '/' + humidity)
     else:
         print("error")
   
