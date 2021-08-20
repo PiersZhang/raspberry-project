@@ -92,8 +92,8 @@ while True:
   
     if check==check_tmp and temperature!=0 and temperature!=0:  # 判断数据是否正常
         print("Temperature is ", temperature,"C\nHumidity is ",humidity,"%")# 打印温湿度数据
-        url = root + '/0'
-        res = requests.post(url = url + '/' + temperature + '/' + humidity)
+        url = root + '/' + temperature + '/' + humidity
+        res = requests.post(url = url)
     else:
         print("error")
   
