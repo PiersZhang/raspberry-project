@@ -14,9 +14,9 @@ def init():
 
 def beep():
     while GPIO.input(12):
-        GPIO.output(16, GPIO.LOW)
-        time.sleep(2)
         GPIO.output(16, GPIO.HIGH)
+        time.sleep(2)
+        GPIO.output(16, GPIO.LOW)
         time.sleep(2)
 
 def detct():
@@ -28,7 +28,7 @@ def detct():
             beep()
             print(res)
         else:
-            GPIO.output(16, GPIO.HIGH)
+            GPIO.output(16, GPIO.LOW)
             print('fucking nobody!!!')
             url = root + '/0'
             res = requests.post(url = url)
