@@ -31,7 +31,7 @@ def detct():
                 GPIO.output(16, GPIO.LOW)
             print('fucking nobody!!!')
             url = root + '/0'
-            res = requests.post(url = url)
+            res = requests.get(url = url)
         time.sleep(1)
 
 
