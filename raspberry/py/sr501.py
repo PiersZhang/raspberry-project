@@ -4,6 +4,8 @@ import requests
 import json
 
 root = "http://172.20.10.3:3000"
+# 变量，记录连续三次人体传感器信号为低频，则led灯灭
+count = 0
 
 def init():
     GPIO.setwarnings(False)
@@ -18,12 +20,15 @@ def init():
 def detct():
     while True:
         if GPIO.input(12) == True:
+            count = 0
             GPIO.output(16, GPIO.HIGH)
             print('it is here!!!')
             url = root + '/1'
             res = requests.post(url = url)
         else:
-            GPIO.output(16, GPIO.LOW)
+            count = count + 1
+            if count >= 4:
+                GPIO.output(16, GPIO.LOW)
             print('fucking nobody!!!')
             url = root + '/0'
             res = requests.post(url = url)
