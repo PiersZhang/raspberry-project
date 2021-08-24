@@ -93,9 +93,12 @@ while True:
     if check==check_tmp and temperature!=0 and temperature!=0:  # 判断数据是否正常
         print("Temperature is ", temperature,"C\nHumidity is ",humidity,"%")# 打印温湿度数据
         url = root + '/setTempAndHum' + '/' + str(temperature) + '/' + str(humidity)
-        res = requests.get(url = url)
+        try:
+            res = requests.get(url = url)
+        except:
+            print("error1")
     else:
-        print("error")
+        print("error2")
   
     time.sleep(1)
     GPIO.cleanup()
