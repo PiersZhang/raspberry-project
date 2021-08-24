@@ -16,7 +16,7 @@ def init():
 
 
 def detct():
-    # 变量，记录连续三次人体传感器信号为低频，则led灯灭
+    # 变量，记录连续5秒（次）人体传感器信号为低频，则led灯灭
     count = 0
     while True:
         if GPIO.input(12) == True:
@@ -27,7 +27,7 @@ def detct():
             res = requests.post(url = url)
         else:
             count += 1
-            if count >= 4:
+            if count > 5:
                 GPIO.output(16, GPIO.LOW)
             print('fucking nobody!!!')
             url = root + '/0'
