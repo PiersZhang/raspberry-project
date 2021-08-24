@@ -26,13 +26,11 @@ def detct():
             url = root + '/1'
             res = requests.post(url = url)
             beep()
-            print(res)
         else:
             GPIO.output(16, GPIO.LOW)
             print('fucking nobody!!!')
             url = root + '/0'
             res = requests.post(url = url)
-            print(res)
         time.sleep(1)
 
 
