@@ -14,20 +14,14 @@ def init():
     GPIO.setup(16, GPIO.OUT)
     pass
 
-def beep():
-    while GPIO.input(12):
-        GPIO.output(16, GPIO.HIGH)
-        time.sleep(6)
-        GPIO.output(16, GPIO.LOW)
-        time.sleep(6)
 
 def detct():
     while True:
         if GPIO.input(12) == True:
+            GPIO.output(16, GPIO.HIGH)
             print('it is here!!!')
             url = root + '/1'
             res = requests.post(url = url)
-            beep()
         else:
             GPIO.output(16, GPIO.LOW)
             print('fucking nobody!!!')
