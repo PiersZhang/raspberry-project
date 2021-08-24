@@ -9,15 +9,15 @@ def init():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(12, GPIO.IN)
-    GPIO.setup(21, GPIO.OUT)
+    GPIO.setup(16, GPIO.OUT)
     pass
 
 def beep():
     while GPIO.input(12):
-        GPIO.output(21, GPIO.LOW)
-        time.sleep(0.5)
-        GPIO.output(21, GPIO.HIGH)
-        time.sleep(0.5)
+        GPIO.output(16, GPIO.LOW)
+        time.sleep(2)
+        GPIO.output(16, GPIO.HIGH)
+        time.sleep(2)
 
 def detct():
     while True:
@@ -28,7 +28,7 @@ def detct():
             beep()
             print(res)
         else:
-            GPIO.output(21, GPIO.HIGH)
+            GPIO.output(16, GPIO.HIGH)
             print('fucking nobody!!!')
             url = root + '/0'
             res = requests.post(url = url)
