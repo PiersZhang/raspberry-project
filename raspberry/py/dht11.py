@@ -10,7 +10,7 @@ def delayMicrosecond(t):    # 微秒级延时函数
     while end-start<t:  # 循环至时间差值大于或等于设定值时
         end=time.time()     # 记录结束时间
 
-root = "http://172.20.10.3:5000"
+root = "http://172.20.10.3:5000/api/raspberry"
 tmp = []      # 用来存放读取到的数据
 data = 4   # DHT11的data引脚连接到的树莓派的GPIO引脚，使用BCM编号
 a,b = 0,0

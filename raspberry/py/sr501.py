@@ -3,7 +3,7 @@ import time
 import requests
 import json
 
-root = "http://172.20.10.3:3000"
+root = "http://172.20.10.3:5000/api/raspberry"
 
 def init():
     GPIO.setwarnings(False)
