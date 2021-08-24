@@ -2,7 +2,7 @@
 
 module.exports = {
   db: {
-    database: 'raspberry',
+    database: 'raspberry_db',
     host: 'localhost',
     dialect: 'mysql',
     port: 3306,
