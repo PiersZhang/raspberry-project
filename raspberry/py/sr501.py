@@ -8,16 +8,18 @@ root = "http://172.20.10.3:3000"
 def init():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
+    # 人体传感器入口引脚
     GPIO.setup(12, GPIO.IN)
+    # led灯入口引脚
     GPIO.setup(16, GPIO.OUT)
     pass
 
 def beep():
     while GPIO.input(12):
         GPIO.output(16, GPIO.HIGH)
-        time.sleep(2)
+        time.sleep(3)
         GPIO.output(16, GPIO.LOW)
-        time.sleep(2)
+        time.sleep(3)
 
 def detct():
     while True:
