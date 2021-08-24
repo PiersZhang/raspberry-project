@@ -17,9 +17,9 @@ def init():
 def beep():
     while GPIO.input(12):
         GPIO.output(16, GPIO.HIGH)
-        time.sleep(3)
+        time.sleep(6)
         GPIO.output(16, GPIO.LOW)
-        time.sleep(3)
+        time.sleep(6)
 
 def detct():
     while True:
