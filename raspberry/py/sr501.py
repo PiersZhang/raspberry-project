@@ -23,15 +23,21 @@ def detct():
             count *= 0
             GPIO.output(16, GPIO.HIGH)
             print('it is here!!!')
-            url = root + '/1'
-            res = requests.post(url = url)
+            url = root + '/setLight/1'
+            try:
+                res = requests.get(url = url)
+            except:
+                print("setLight1 error")
         else:
             count += 1
             if count > 5:
                 GPIO.output(16, GPIO.LOW)
             print('fucking nobody!!!')
-            url = root + '/0'
-            res = requests.get(url = url)
+            url = root + '/setLight/0'
+            try:
+                res = requests.get(url = url)
+            except:
+                print("setLight0 error")
         time.sleep(1)
 
 
