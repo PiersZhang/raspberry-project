@@ -8,9 +8,22 @@ class Raspberry extends Model {
     const origin = {
       id: this.id,
       temperature: this.temperature,
-      humidity: this.humidity
+      humidity: this.humidity,
+      light: this.light
     };
     return origin;
+  }
+  static async initRaspberry () {
+    const raspberry = await this.findOne();
+    if (!raspberry || !raspberry.id) {
+      this.create(
+        {
+          temperature: 26.0,
+          humidity: 60.0,
+          light: '0'
+        }
+      );
+    }
   }
 }
 
@@ -27,6 +40,10 @@ Raspberry.init(
     },
     humidity: {
       type: Sequelize.FLOAT,
+      allowNull: true
+    },
+    light: {
+      type: Sequelize.STRING({ length: 10 }),
       allowNull: true
     }
   },

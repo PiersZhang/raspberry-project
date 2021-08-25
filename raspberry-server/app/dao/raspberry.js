@@ -3,17 +3,8 @@
 import { RaspberryModel } from '../model/raspberry';
 
 class RaspberryDao {
-  async getTemperature () {
+  async getTempAndHum () {
     const raspberry = await RaspberryModel.findOne();
-    return raspberry;
-  }
-  // async setTemperature (temperature) {
-  //   const raspberry = await RaspberryModel.findOne();
-  //   raspberry.temperature = temperature;
-  //   await raspberry.save();
-  // }
-  async getHumidity () {
-    const raspberry = await RaspberryModel.findAll();
     return raspberry;
   }
   async setTempAndHum (temperature, humidity) {
@@ -22,11 +13,11 @@ class RaspberryDao {
     raspberry.humidity = humidity;
     await raspberry.save();
   }
-  // async setHumidity (humidity) {
-  //   const raspberry = await RaspberryModel.findOne();
-  //   raspberry.humidity = humidity;
-  //   await raspberry.save();
-  // }
+  async setLight (light) {
+    const raspberry = await RaspberryModel.findOne();
+    raspberry.light = light;
+    await raspberry.save();
+  }
 }
 
 export { RaspberryDao };

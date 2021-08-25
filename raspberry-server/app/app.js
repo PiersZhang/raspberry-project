@@ -5,7 +5,8 @@ import mount from 'koa-mount';
 import serve from 'koa-static';
 import { config, json, logging, success, jwt, Loader } from 'lin-mizar';
 import { PermissionModel } from './model/permission';
-import WebSocket from './extension/socket/socket'
+import WebSocket from './extension/socket/socket';
+import { RaspberryModel } from './model/raspberry';
 
 /**
  * 首页
@@ -64,10 +65,10 @@ function applyDefaultExtends (app) {
  */
 function applyWebSocket (app) {
   if (config.getItem('socket.enable')) {
-    const server = new WebSocket(app)
-    return server.init()
+    const server = new WebSocket(app);
+    return server.init();
   }
-  return app
+  return app;
 }
 
 /**
@@ -106,6 +107,7 @@ async function createApp () {
   const lin = new Lin();
   await lin.initApp(app, true); // 是否挂载插件路由，默认为true
   await PermissionModel.initPermission();
+  await RaspberryModel.initRaspberry();
   indexPage(app);
   multipart(app);
   return applyWebSocket(app);
