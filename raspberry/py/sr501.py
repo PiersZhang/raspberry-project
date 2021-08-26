@@ -18,10 +18,16 @@ def init():
 def detct():
     # 变量，记录连续5秒（次）人体传感器信号为低频，则led灯灭
     count = 0
+    light = False
     while True:
         if GPIO.input(12) == True:
             count *= 0
-            GPIO.output(16, GPIO.HIGH)
+            if light == True:
+                GPIO.output(16, GPIO.LOW)
+                light = False
+            else:
+                GPIO.output(16, GPIO.HIGH)
+                light = True
             print('it is here!!!')
             url = root + '/setLight/1'
             try:
