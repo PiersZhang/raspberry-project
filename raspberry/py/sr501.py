@@ -23,6 +23,7 @@ def detct():
         if GPIO.input(12) == True:
             # count *= 0
             if light == True:
+                time.sleep(3)
                 GPIO.output(16, GPIO.LOW)
                 light = False
             else:
